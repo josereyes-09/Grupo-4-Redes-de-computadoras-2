@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELTBOX Technologies S.A.C.</title>
+    <!-- Fuentes para estilo Vintage/Tecnológico -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta de colores Marrones oscuros y Dorados (Vintage Tech) */
+            --bg-base: #161210;      /* Fondo principal casi negro/marrón */
+            --bg-panel: #1f1916;     /* Marrón oscuro para secciones alternas */
+            --bg-card: #2a221d;      /* Marrón para tarjetas */
+            --gold-light: #fbe6a2;   /* Dorado claro para destacar */
+            --gold-main: #d4af37;    /* Dorado principal */
+            --gold-dark: #8c6d1d;    /* Dorado oscuro/bronce para bordes */
+            --text-main: #e8e2d2;    /* Texto claro marfil */
+            --text-muted: #bdae9d;   /* Texto secundario beige oscuro */
+            --border-color: #42352b; /* Bordes marrones */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Tipografía de títulos */
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-main);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- CABECERA (HERO) --- */
+        header {
+            background: linear-gradient(135deg, #0f0c0a 0%, #211a16 100%);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold-dark);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 60%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+            letter-spacing: 3px;
+        }
+
+        header .slogan {
+            font-size: 1.4rem;
+            color: var(--gold-main);
+            font-style: italic;
+            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bg-alt {
+            background-color: var(--bg-panel);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background-color: var(--gold-dark);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* --- GRIDS --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+        /* --- VALORES --- */
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .value-item {
+            background-color: var(--bg-card);
+            padding: 12px 25px;
+            border-radius: 4px;
+            border: 1px solid var(--gold-dark);
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .value-item:hover {
+            background-color: var(--gold-dark);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- TARJETAS (CARDS) --- */
+        .card {
+            background-color: var(--bg-card);
+            padding: 35px 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background-color: var(--gold-dark);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            border-color: var(--gold-dark);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card ul li::before {
+            content: '◈';
+            position: absolute;
+            left: 0;
+            color: var(--gold-main);
+            font-size: 1rem;
+            top: 1px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* --- DEPARTAMENTOS / AREAS --- */
+        .dept-card {
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-base) 100%);
+            border-left: 3px solid var(--gold-dark);
+        }
+        
+        .dept-card:hover {
+            border-left: 3px solid var(--gold-light);
+        }
+
+        /* --- SUCURSALES --- */
+        .branch-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: radial-gradient(circle, var(--bg-card) 0%, var(--bg-base) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        .branch-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--gold-main);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0d0a08;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 4px solid var(--gold-dark);
+        }
+
+        footer .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+
+        footer .slogan-footer {
+            font-size: 1.2rem;
+            color: var(--gold-main);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        footer p {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            color: #776e65;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 30px; }
+            header h1 { font-size: 2.8rem; }
+        }
+        
+        .text-center { text-align: center; }
+        .highlight { color: var(--gold-light); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header>
+        <div class="container">
+            <h1>HELTBOX Technologies S.A.C.</h1>
+            <p class="slogan">"Innovando hoy, construyendo la tecnología del mañana."</p>
+        </div>
+    </header>
+
+    <!-- QUIÉNES SOMOS -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <p><span class="highlight">HELTBOX Technologies S.A.C.</span> es una empresa peruana dedicada al diseño, desarrollo, fabricación e implementación de soluciones tecnológicas y electrónicas para empresas, instituciones y pequeños negocios. Nuestro objetivo es impulsar la innovación mediante el desarrollo de productos electrónicos de alta calidad, integrando ingeniería electrónica, telecomunicaciones, automatización, sistemas embebidos y tecnologías inteligentes.</p>
+            <p>Nos especializamos en crear soluciones personalizadas que permiten a nuestros clientes optimizar sus procesos, mejorar su productividad y modernizar su infraestructura tecnológica.</p>
+        </div>
+    </section>
+
+    <!-- MISIÓN Y VISIÓN -->
+    <section class="bg-alt">
+        <div class="container grid-2">
+            <div class="card">
+                <h3>Nuestra Misión</h3>
+                <p>Diseñar y desarrollar soluciones electrónicas y tecnológicas innovadoras que satisfagan las necesidades de nuestros clientes mediante productos confiables, eficientes y de alta calidad, contribuyendo al crecimiento tecnológico de las empresas y de la industria.</p>
+            </div>
+            <div class="card">
+                <h3>Nuestra Visión</h3>
+                <p>Ser una empresa líder en el desarrollo de tecnología electrónica y soluciones inteligentes en Latinoamérica, reconocida por la innovación, la excelencia de nuestros productos y el compromiso con nuestros clientes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Nuestros Valores</h2>
+            <div class="values-list">
+                <div class="value-item">Innovación constante</div>
+                <div class="value-item">Calidad en cada proyecto</div>
+                <div class="value-item">Compromiso con clientes</div>
+                <div class="value-item">Trabajo en equipo</div>
+                <div class="value-item">Responsabilidad</div>
+                <div class="value-item">Ética profesional</div>
+                <div class="value-item">Mejora continua</div>
+                <div class="value-item">Seguridad tecnológica</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ HACEMOS -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 class="section-title">Qué Hacemos</h2>
+            <p class="text-center" style="max-width: 900px; margin: 0 auto 50px auto;">En HELTBOX Technologies desarrollamos productos y soluciones tecnológicas para diferentes sectores empresariales. Nuestro equipo de ingenieros diseña equipos electrónicos desde cero, desarrolla software para sistemas embebidos e implementa soluciones de automatización y telecomunicaciones adaptadas a cada cliente. Nuestros proyectos abarcan desde pequeños dispositivos electrónicos hasta sistemas completos para empresas, integrando hardware, software y servicios de soporte.</p>
+            
+            <h3 class="text-center" style="margin-bottom: 40px; font-size: 2rem;">Productos y Servicios</h3>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Desarrollo Electrónico</h3>
+                    <ul>
+                        <li>Diseño de circuitos electrónicos.</li>
+                        <li>Diseño de placas PCB.</li>
+                        <li>Prototipado electrónico.</li>
+                        <li>Desarrollo de dispositivos inteligentes.</li>
+                        <li>Sistemas de control electrónico.</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Sistemas Embebidos</h3>
+                    <ul>
+                        <li>Desarrollo con microcontroladores.</li>
+                        <li>Firmware personalizado.</li>
+                        <li>Integración de sensores.</li>
+                        <li>Equipos IoT.</li>
+                        <li>Controladores inteligentes.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Telecomunicaciones</h3>
+                    <ul>
+                        <li>Diseño de infraestructura de redes.</li>
+                        <li>Implementación de redes empresariales.</li>
+                        <li>Redes inalámbricas.</li>
+                        <li>Fibra óptica.</li>
+                        <li>Comunicaciones industriales.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Audio Profesional</h3>
+                    <ul>
+                        <li>Amplificadores de audio.</li>
+                        <li>Procesadores digitales (DSP).</li>
+                        <li>Sistemas de sonido profesional.</li>
+                        <li>Equipos para estudios de grabación.</li>
+                        <li>Soluciones para auditorios y eventos.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Automatización Industrial</h3>
+                    <ul>
+                        <li>Sistemas PLC.</li>
+                        <li>Automatización de procesos.</li>
+                        <li>Monitoreo industrial.</li>
+                        <li>Sensores inteligentes.</li>
+                        <li>Control remoto de equipos.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Desarrollo de Software</h3>
+                    <ul>
+                        <li>Software para dispositivos electrónicos.</li>
+                        <li>Sistemas web empresariales.</li>
+                        <li>Aplicaciones de monitoreo.</li>
+                        <li>Paneles de control.</li>
+                        <li>Integración con bases de datos.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Consultoría Tecnológica</h3>
+                    <ul>
+                        <li>Asesoría en proyectos electrónicos.</li>
+                        <li>Diseño de soluciones personalizadas.</li>
+                        <li>Auditorías tecnológicas.</li>
+                        <li>Capacitación empresarial.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Soporte Técnico</h3>
+                    <ul>
+                        <li>Instalación de equipos.</li>
+                        <li>Mantenimiento preventivo.</li>
+                        <li>Mantenimiento correctivo.</li>
+                        <li>Garantías.</li>
+                        <li>Asistencia técnica especializada.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREAS DE LA EMPRESA -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Áreas de la Empresa</h2>
+            <div class="grid-3">
+                <div class="card dept-card">
+                    <h3>Dirección General</h3>
+                    <p>Responsable de la planificación estratégica, toma de decisiones y crecimiento empresarial.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Administración</h3>
+                    <p>Gestiona los recursos humanos, financieros, compras, contabilidad y operaciones administrativas de toda la organización.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Departamento de Ventas</h3>
+                    <p>Encargado de la atención al cliente, elaboración de cotizaciones, gestión comercial, marketing y desarrollo de nuevos negocios.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Investigación y Desarrollo (I+D)</h3>
+                    <p>Diseña nuevas tecnologías, desarrolla prototipos y lidera la innovación de productos electrónicos.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Ingeniería Electrónica</h3>
+                    <p>Diseña hardware, desarrolla circuitos electrónicos, realiza pruebas técnicas y participa en la fabricación de nuevos dispositivos.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Ingeniería de Telecomunicaciones</h3>
+                    <p>Diseña e implementa redes empresariales, sistemas de comunicación, infraestructura tecnológica y soluciones de conectividad.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Desarrollo de Software</h3>
+                    <p>Programa aplicaciones, firmware, plataformas web y sistemas de monitoreo para complementar los productos desarrollados por la empresa.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Producción</h3>
+                    <p>Realiza el ensamblaje, pruebas de funcionamiento, control de calidad y fabricación de los productos electrónicos.</p>
+                </div>
+                <div class="card dept-card">
+                    <h3>Soporte Técnico</h3>
+                    <p>Brinda mantenimiento, instalación, capacitación y asistencia técnica a los clientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTRUCTURA EMPRESARIAL -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 class="section-title">Nuestra Estructura Empresarial</h2>
+            <div class="grid-4">
+                <div class="branch-card">
+                    <h3>Sede Central (Lima)</h3>
+                    <p>Concentra la administración corporativa, gerencia, laboratorios I+D, centro de datos, ingeniería, producción y soporte técnico. Coordina todas las operaciones.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Sucursal Norte</h3>
+                    <p>Especializada en ventas, atención al cliente, soporte técnico e implementación de proyectos para la zona norte del país.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Sucursal Sur</h3>
+                    <p>Dedicada a ventas, asistencia técnica, instalación de equipos y ejecución de proyectos tecnológicos para la zona sur.</p>
+                </div>
+                <div class="branch-card">
+                    <h3>Sucursal Centro</h3>
+                    <p>Orientada a la atención comercial, soporte postventa y distribución de productos electrónicos para clientes del centro del país.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPROMISO -->
+    <section>
+        <div class="container" style="text-align: center; max-width: 800px;">
+            <h2 class="section-title" style="margin-bottom: 25px;">Nuestro Compromiso</h2>
+            <p style="text-align: center; font-size: 1.15rem; color: var(--gold-light);">En HELTBOX Technologies creemos que la innovación es el motor del progreso. Por ello desarrollamos soluciones tecnológicas confiables, eficientes y escalables, adaptadas a las necesidades de cada cliente.</p>
+            <p style="text-align: center; font-size: 1.15rem; color: var(--gold-light);">Nuestro compromiso es ofrecer productos de alto rendimiento, un servicio de calidad y una atención personalizada que impulse el crecimiento de las empresas que confían en nosotros.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">HELTBOX Technologies</div>
+            <div class="slogan-footer">"Innovando hoy, construyendo la tecnología del mañana."</div>
+            <p>&copy; 2026 HELTBOX Technologies S.A.C. - Todos los derechos reservados.</p>
+            <p style="margin-top: 5px;">Sistema de Monitoreo Interno - Red de Seguridad Corporativa</p>
+        </div>
+    </footer>
+
+</body>
+</html>
